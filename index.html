@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload ke Google Drive</title>
+</head>
+<body>
+  <h2>Upload File Anime</h2>
+  <form id="uploadForm" enctype="multipart/form-data">
+    <label>Nama File:</label><br>
+    <input type="text" name="nama" required><br><br>
+    <label>Pilih File:</label><br>
+    <input type="file" name="file" required><br><br>
+    <button type="submit">Upload</button>
+  </form>
+
+  <script>
+    const webhookURL = "https://hook.eu2.make.com/85wck3rpttozkbk76qd5n6h1fob8nba4";
+
+    document.getElementById("uploadForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+
+      const res = await fetch(webhookURL, {
+        method: "POST",
+        body: formData,
+      });
+
+      if (res.ok) alert("Upload berhasil!");
+      else alert("Upload gagal!");
+    });
+  </script>
+</body>
+</html>
